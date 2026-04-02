@@ -151,7 +151,7 @@ Answer a few questions to generate a powerful prompt 👇
                     prompt_input += f"{key}: {value}\n"
 
                 response = client.chat.completions.create(
-                    model="gpt-5.3",
+                    model="gpt-4o",
                     messages=[
                         {
                             "role": "system",
