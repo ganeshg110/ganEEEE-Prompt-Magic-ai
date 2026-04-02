@@ -214,5 +214,5 @@ PromptForge AI is an intelligent prompt generator that helps users create high-q
 - Streamlit  
 - OpenAI API  
 
-Built with ❤️ by Ganesh
+Built with ❤️ by Ganesh Goddilla
 """)
