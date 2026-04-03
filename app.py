@@ -413,4 +413,4 @@ PromptForge AI is a smart prompt generator.
 🚀 Built for creators, developers, and entrepreneurs  
 ⚡ 100% Free version  
 💡 Upgrade to AI-powered version anytime  
-""")
+  Built by Ganesh Goddilla""")
