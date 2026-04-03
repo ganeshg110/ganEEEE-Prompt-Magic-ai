@@ -467,39 +467,40 @@
 import streamlit as st
 
 # -------------------------------
-# 💾 SESSION HISTORY
+# 💾 SESSION
 # -------------------------------
 if "history" not in st.session_state:
     st.session_state.history = []
 
 # -------------------------------
-# 🔧 PAGE CONFIG
+# 🔧 CONFIG
 # -------------------------------
 st.set_page_config(page_title="PromptForge AI", page_icon="⚡", layout="centered")
 
 # -------------------------------
-# 🎨 STYLING
+# 🎨 STYLING (CHAT UI)
 # -------------------------------
 st.markdown("""
 <style>
-body {
-    background-color: #0e1117;
+.chat-user {
+    background: #1f2937;
+    padding: 10px;
+    border-radius: 12px;
+    margin-bottom: 10px;
+    text-align: right;
 }
-.main {
-    background: linear-gradient(180deg, #0e1117 0%, #111827 100%);
+.chat-ai {
+    background: #111827;
+    padding: 15px;
+    border-radius: 12px;
+    margin-bottom: 15px;
 }
-h1 {
-    font-size: 42px;
-    text-align: center;
-}
-.subtext {
-    text-align: center;
+.small {
+    font-size: 11px;
     color: #9ca3af;
 }
 .stButton>button {
-    background: linear-gradient(90deg, #4CAF50, #22c55e);
-    color: white;
-    border-radius: 10px;
+    border-radius: 20px;
 }
 </style>
 """, unsafe_allow_html=True)
@@ -509,7 +510,7 @@ h1 {
 # -------------------------------
 st.sidebar.markdown("""
 <h2 style='margin-bottom:0;'>⚡ PromptForge AI</h2>
-<p style='color:#6b7280; font-size:11px; margin-top:0;'>By Ganesh Goddilla</p>
+<p style='color:#6b7280; font-size:11px;'>By Ganesh Goddilla</p>
 """, unsafe_allow_html=True)
 
 page = st.sidebar.radio("Navigation", ["🏠 Home", "📜 History", "ℹ️ About"])
@@ -518,99 +519,61 @@ page = st.sidebar.radio("Navigation", ["🏠 Home", "📜 History", "ℹ️ Abou
 # 🧠 QUESTIONS
 # -------------------------------
 def generate_questions(intent):
-
     if "image" in intent:
         return [
             ("Type", "Image type?", "realistic"),
             ("Subject", "Main subject?", "robot"),
-            ("Style", "Style?", "cinematic"),
+            ("Style", "Base style?", "cinematic"),
             ("Mood", "Mood?", "dark"),
         ]
-
-    elif "youtube" in intent:
-        return [
-            ("Topic", "Video topic?", "AI tools"),
-            ("Audience", "Audience?", "students"),
-            ("Length", "Length?", "short"),
-            ("Tone", "Tone?", "fun"),
-        ]
-
-    elif "resume" in intent:
-        return [
-            ("Role", "Target role?", "Software Engineer"),
-            ("Experience", "Experience?", "Fresher"),
-            ("Skills", "Skills?", "Python, SQL"),
-        ]
-
-    else:
-        return [
-            ("Goal", "Goal?", "startup idea"),
-            ("Context", "Context?", "AI"),
-            ("Audience", "Audience?", "developers"),
-            ("Tone", "Tone?", "professional"),
-        ]
-
-# -------------------------------
-# 🧠 DYNAMIC EXAMPLES
-# -------------------------------
-def get_examples(intent, field):
-
-    intent = intent.lower()
-    field = field.lower()
-
-    if "image" in intent:
-        return {
-            "type": ["realistic", "cartoon", "3D", "illustration"],
-            "subject": ["robot", "astronaut", "lion", "product"],
-            "style": ["cinematic", "anime", "photorealistic", "cyberpunk"],
-            "mood": ["dark", "vibrant", "futuristic", "dreamy"],
-        }.get(field, [])
-
-    elif "youtube" in intent:
-        return {
-            "topic": ["AI tools", "motivation", "finance"],
-            "audience": ["students", "beginners", "developers"],
-            "length": ["short", "long"],
-            "tone": ["fun", "educational", "serious"],
-        }.get(field, [])
-
-    elif "resume" in intent:
-        return {
-            "role": ["Software Engineer", "Data Analyst", "HR"],
-            "experience": ["Fresher", "1 year", "3+ years"],
-            "skills": ["Python, SQL", "Excel, Power BI"],
-        }.get(field, [])
-
     return []
 
 # -------------------------------
-# 🧠 PROMPT ENGINE
+# 🧠 PROMPT ENGINE (MULTI STYLE)
 # -------------------------------
-def generate_prompts(user_input, answers):
+def generate_prompt(user_input, answers, selected_style):
 
-    if "image" in user_input.lower():
+    subject = answers.get("Subject", "subject")
+    mood = answers.get("Mood", "balanced")
+    type_ = answers.get("Type", "high-quality")
 
-        subject = answers.get("Subject", "")
-        style = answers.get("Style", "")
-        mood = answers.get("Mood", "")
-        type_ = answers.get("Type", "")
-
+    if selected_style == "Cinematic":
         return f"""
-🔹 Prompt 1 – Creative  
-Create a highly detailed {type_} image of {subject} in a {style} style with a {mood} mood.
+🎬 Cinematic Prompt:
 
-🔹 Prompt 2 – Analytical  
-Subject: {subject}, Style: {style}, Mood: {mood}, Type: {type_}
+Create a {type_} cinematic scene of {subject}, captured like a movie frame. Use dramatic lighting, depth of field, and dynamic camera angles.
 
-🔹 Prompt 3 – Minimal  
-{type_} {style} {mood} {subject}, high quality
-
-🔹 Prompt 4 – Expert  
-Professional {type_} {style} image of {subject}, cinematic lighting, ultra realistic.
+The atmosphere should feel {mood}, with high contrast, soft shadows, and cinematic color grading. Add realistic textures and storytelling composition.
 """
 
-    # default
-    return f"Generate prompts for {user_input}"
+    elif selected_style == "Anime":
+        return f"""
+🎨 Anime Prompt:
+
+Create an anime-style illustration of {subject}. Use vibrant colors, expressive details, and smooth line art.
+
+The mood should feel {mood}, with stylized lighting and dynamic composition. Inspired by modern anime aesthetics.
+"""
+
+    elif selected_style == "Realistic":
+        return f"""
+📸 Realistic Prompt:
+
+Create a photorealistic image of {subject} with highly detailed textures and natural lighting.
+
+The scene should feel {mood}, with accurate shadows, reflections, and real-world proportions.
+"""
+
+    elif selected_style == "Cyberpunk":
+        return f"""
+🌆 Cyberpunk Prompt:
+
+Create a futuristic cyberpunk scene of {subject}, filled with neon lights and high-tech elements.
+
+Use a {mood} atmosphere with glowing colors, dark environments, and futuristic city vibes.
+"""
+
+    return f"Generate prompt for {user_input}"
 
 # =========================================================
 # 🏠 HOME
@@ -618,61 +581,64 @@ Professional {type_} {style} image of {subject}, cinematic lighting, ultra reali
 if page == "🏠 Home":
 
     st.markdown("<h1>⚡ PromptForge AI</h1>", unsafe_allow_html=True)
-    st.markdown('<p class="subtext">Generate prompts like a pro 🚀</p>', unsafe_allow_html=True)
+    st.markdown("<p class='small'>Generate pro prompts like ChatGPT 🚀</p>", unsafe_allow_html=True)
 
     user_input = st.text_input("What do you want to create?")
 
     if user_input:
 
+        # USER CHAT BUBBLE
+        st.markdown(f"<div class='chat-user'>{user_input}</div>", unsafe_allow_html=True)
+
         questions = generate_questions(user_input.lower())
         answers = {}
 
-        st.markdown("### ⚙️ Customize your prompt")
+        st.markdown("### ⚙️ Customize")
 
         for title, question, example in questions:
+            answers[title] = st.text_input(question, placeholder=example)
 
-            key = f"{title}_{user_input}"
+        # 🎯 STYLE DROPDOWN
+        style = st.selectbox(
+            "🎨 Select Prompt Style",
+            ["Cinematic", "Anime", "Realistic", "Cyberpunk"]
+        )
 
-            # input
-            answers[title] = st.text_input(
-                question,
-                placeholder=example,
-                key=key
-            )
+        if st.button("🚀 Generate Prompt"):
 
-            # examples
-            examples = get_examples(user_input, title)
+            output = generate_prompt(user_input, answers, style)
 
-            if examples:
-                cols = st.columns(len(examples))
+            # AI CHAT BUBBLE
+            st.markdown(f"<div class='chat-ai'>{output}</div>", unsafe_allow_html=True)
 
-                for i, ex in enumerate(examples):
-                    with cols[i]:
-                        if st.button(ex, key=f"{key}_{ex}"):
-                            st.session_state[key] = ex
-                            st.rerun()
+            st.session_state.history.append((user_input, output))
 
-        # generate
-        if st.button("🚀 Generate Prompts"):
-
-            output = generate_prompts(user_input, answers)
-
-            st.markdown("### 🔥 Output")
-            st.code(output)
-
-            st.session_state.history.append(output)
+            st.download_button("📋 Download", output, file_name="prompt.txt")
 
 # =========================================================
 # 📜 HISTORY
 # =========================================================
 elif page == "📜 History":
 
-    for item in st.session_state.history[::-1]:
-        st.code(item)
+    st.title("📜 History")
+
+    for user, ai in st.session_state.history[::-1]:
+        st.markdown(f"<div class='chat-user'>{user}</div>", unsafe_allow_html=True)
+        st.markdown(f"<div class='chat-ai'>{ai}</div>", unsafe_allow_html=True)
 
 # =========================================================
 # ℹ️ ABOUT
 # =========================================================
 else:
 
-    st.write("PromptForge AI - Free prompt generator 🚀")
+    st.title("ℹ️ About")
+
+    st.write("""
+PromptForge AI – FREE AI Prompt Generator 🚀
+
+🔥 Features:
+- ChatGPT-like UI
+- Multiple prompt styles
+- No API cost
+- Smart prompt builder
+""")
