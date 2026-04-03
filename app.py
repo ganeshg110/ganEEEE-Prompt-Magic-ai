@@ -276,7 +276,7 @@ h1 {
 # -------------------------------
 # 📌 SIDEBAR
 # -------------------------------
-st.sidebar.title("⚡ ganEEEE_PromptForge AI")
+st.sidebar.title("⚡ PromptForge AI")
 
 page = st.sidebar.radio(
     "Navigation",
@@ -284,7 +284,7 @@ page = st.sidebar.radio(
 )
 
 # -------------------------------
-# 🧠 QUESTION ENGINE
+# 🧠 FUNCTION: DYNAMIC QUESTIONS
 # -------------------------------
 def generate_questions(intent):
 
@@ -321,10 +321,55 @@ def generate_questions(intent):
         ]
 
 # -------------------------------
-# 🧠 PROMPT ENGINE
+# 🧠 SMART PROMPT ENGINE
 # -------------------------------
 def generate_prompts(user_input, answers):
 
+    intent = user_input.lower()
+
+    # 🔥 IMAGE LOGIC (SMART)
+    if "image" in intent:
+
+        subject = answers.get("Subject", "")
+        style = answers.get("Style", "")
+        mood = answers.get("Mood", "")
+        type_ = answers.get("Type", "")
+
+        base = f"{type_} {style} {mood} {subject}".strip()
+
+        creative = f"""
+🔹 Prompt 1 – Creative Style  
+Create a highly detailed {type_} image of {subject} in a {style} style with a {mood} mood.  
+Include cinematic lighting, rich textures, and dynamic composition.  
+Make it visually stunning and unique.
+"""
+
+        analytical = f"""
+🔹 Prompt 2 – Analytical Style  
+Generate an image with the following structured details:
+- Subject: {subject}
+- Style: {style}
+- Mood: {mood}
+- Type: {type_}
+
+Ensure clarity, proper composition, and balanced visual elements.
+"""
+
+        minimal = f"""
+🔹 Prompt 3 – Minimal Style  
+{base}, high quality, detailed
+"""
+
+        expert = f"""
+🔹 Prompt 4 – Expert-Level Style  
+Create a {type_} {style} image of {subject} with a {mood} atmosphere.  
+Use professional photography techniques, depth of field, realistic lighting, and high-resolution detail (4K/8K).  
+Focus on composition, shadows, and cinematic realism.
+"""
+
+        return creative + analytical + minimal + expert
+
+    # 🔥 DEFAULT LOGIC (OTHER USE CASES)
     base = f"Task: {user_input}\n"
     for k, v in answers.items():
         base += f"- {k}: {v}\n"
@@ -354,19 +399,18 @@ Act as an industry expert and generate a high-quality prompt:
 # =========================================================
 if page == "🏠 Home":
 
-    # 🔥 HERO SECTION
     st.markdown("<h1>⚡ PromptForge AI</h1>", unsafe_allow_html=True)
-    st.markdown('<p class="subtext">Generate powerful AI prompts in seconds 🚀</p>', unsafe_allow_html=True)
+    st.markdown('<p class="subtext">Generate powerful prompts like a pro 🚀</p>', unsafe_allow_html=True)
 
     st.markdown("""
 <div class="card">
 ✨ Create prompts for Resume, YouTube, Images, Startups & more  
-⚡ No coding required  
+⚡ 100% Free  
 🧠 Smart guided system  
 </div>
 """, unsafe_allow_html=True)
 
-    user_input = st.text_input("What do you want to create?", placeholder="e.g. resume, youtube script...")
+    user_input = st.text_input("What do you want to create?", placeholder="e.g. image, resume, youtube...")
 
     if user_input:
 
@@ -409,8 +453,9 @@ else:
 
     st.write("""
 PromptForge AI is a smart prompt generator.
+Created By GANESH GODDILLA
 
 🚀 Built for creators, developers, and entrepreneurs  
 ⚡ 100% Free version  
 💡 Upgrade to AI-powered version anytime  
-  Built by Ganesh Goddilla""")
+""")
