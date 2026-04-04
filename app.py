@@ -760,8 +760,56 @@ def generate_prompts(user_input, answers):
 
     intent = user_input.lower()
 
-    # 🔥 IMAGE PROMPT (UPGRADED)
-    if "image" in intent:
+    # 🎯 ROLE-BASED PROMPTS (NEW LOGIC)
+    if "youtube" in intent:
+
+        topic = answers.get("Goal", "")
+        audience = answers.get("Audience", "")
+
+        return f"""
+🔹 Prompt 1 – Expert Script Writer  
+Act as an experienced YouTube content creator.  
+Create an engaging script about "{topic}" for {audience}.  
+Include a strong hook, storytelling, and a clear structure (intro, main content, conclusion).  
+
+🔹 Prompt 2 – Growth Focused  
+Act as a YouTube growth strategist.  
+Write a viral-ready script on "{topic}" targeting {audience}.  
+Focus on retention, curiosity gaps, and engagement techniques.  
+
+🔹 Prompt 3 – Minimal  
+Write a YouTube script about "{topic}" for {audience}.  
+
+🔹 Prompt 4 – Professional  
+Act as a professional scriptwriter.  
+Create a high-quality, well-structured YouTube script on "{topic}" tailored for {audience}.  
+Ensure clarity, engagement, and audience retention.
+"""
+
+    elif "resume" in intent:
+
+        role = answers.get("Role", "job role")
+        skills = answers.get("Skills", "")
+
+        return f"""
+🔹 Prompt 1 – Career Coach  
+You are an experienced career coach.  
+Review my resume for a "{role}" position and suggest improvements.  
+Focus on clarity, impact, and ATS optimization.  
+
+🔹 Prompt 2 – Recruiter Perspective  
+Act as a recruiter hiring for "{role}".  
+Evaluate my resume and suggest what to improve to stand out.  
+
+🔹 Prompt 3 – Minimal  
+Review my resume for {role}.  
+
+🔹 Prompt 4 – Expert  
+Act as a senior hiring manager.  
+Provide detailed feedback on my resume for a "{role}" role, focusing on achievements, structure, and keywords.
+"""
+
+    elif "image" in intent:
 
         character = answers.get("Character", "")
         pose = answers.get("Pose", "")
@@ -772,24 +820,44 @@ def generate_prompts(user_input, answers):
         style_prompt = get_style_prompt(style)
 
         return f"""
-🔹 Prompt 1 – Cinematic Pro  
-Create a highly detailed {character}, {pose} in a {background}.  
-Color theme: {colors}.  
-Style: {style_prompt}.  
-Use cinematic lighting, volumetric shadows, depth of field, ultra HD 8K.
+🔹 Prompt 1 – Professional AI Artist  
+Act as a professional AI artist.  
+Create a highly detailed image of a {character}, {pose}, in a {background}.  
+Use {colors} color palette and {style} style.  
+Apply cinematic lighting, depth of field, and ultra-high resolution (8K).
 
-🔹 Prompt 2 – Creative  
-A visually stunning {character} performing {pose} in {background},  
-with {colors} tones and {style} aesthetics, dynamic composition.
+🔹 Prompt 2 – Creative Direction  
+Act as a creative director.  
+Design a visually stunning {character} performing {pose} in {background},  
+with {colors} tones and {style} aesthetics.  
 
 🔹 Prompt 3 – Minimal  
-{character}, {pose}, {background}, {colors}, {style}, high quality
+{character}, {pose}, {background}, {colors}, {style}, high quality  
 
-🔹 Prompt 4 – Expert Level  
-Create a professional {style} artwork of {character} in {background}.  
-Pose: {pose}.  
-Colors: {colors}.  
-Use advanced rendering, realistic lighting, composition balance, 8K resolution, trending on ArtStation.
+🔹 Prompt 4 – Expert-Level Prompt  
+Act as an expert prompt engineer.  
+Generate a production-quality AI image prompt for a {character} in {background},  
+with {pose}, {colors}, and {style}.  
+Include lighting, composition, textures, and realism enhancements.
+"""
+
+    # 🔥 DEFAULT (SMART GENERIC)
+    return f"""
+🔹 Prompt 1 – Expert  
+Act as an expert in the field.  
+Help me with: "{user_input}".  
+Provide clear, structured, and actionable output.
+
+🔹 Prompt 2 – Creative  
+Act as a creative professional.  
+Generate innovative ideas for: "{user_input}".
+
+🔹 Prompt 3 – Minimal  
+{user_input}
+
+🔹 Prompt 4 – Professional  
+Act as an industry expert.  
+Deliver high-quality output for: "{user_input}" with clarity and depth.
 """
 
     # DEFAULT
