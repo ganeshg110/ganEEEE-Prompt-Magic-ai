@@ -2003,6 +2003,6 @@ with f3:
 st.markdown("""
 <br>
 <div style="text-align:center; color:#94A3B8; font-size:14px; padding-bottom:10px;">
-    Built with ❤️ for smarter prompting • <b>PromptNexus AI</b>
+    Built with ❤️ By Ganesh Goddilla for smarter prompting • <b>PromptNexus AI</b>
 </div>
 """, unsafe_allow_html=True)
