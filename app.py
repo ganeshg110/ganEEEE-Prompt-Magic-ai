@@ -2707,64 +2707,6 @@ section[data-testid="stSidebar"] {
     font-size: 15px;
 }
 
-.prompt-card {
-    background: linear-gradient(135deg, rgba(17,24,39,0.98), rgba(30,41,59,0.98));
-    border: 1px solid rgba(0,212,255,0.22);
-    border-radius: 22px;
-    padding: 24px;
-    box-shadow: 0 0 25px rgba(0,212,255,0.10), 0 0 35px rgba(168,85,247,0.10);
-    margin-top: 18px;
-}
-
-.prompt-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 14px;
-    margin-bottom: 16px;
-}
-
-.prompt-title {
-    font-size: 24px;
-    font-weight: 800;
-    color: #FFFFFF;
-}
-
-.prompt-body {
-    white-space: pre-wrap;
-    line-height: 1.9;
-    font-size: 16px;
-    color: #F8FAFC;
-}
-
-.copy-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 42px;
-    height: 42px;
-    border-radius: 14px;
-    border: 1px solid rgba(255,255,255,0.10);
-    background: rgba(255,255,255,0.04);
-    color: white;
-    cursor: pointer;
-    transition: all 0.25s ease;
-    box-shadow: 0 0 12px rgba(0,212,255,0.10);
-}
-
-.copy-btn:hover {
-    transform: translateY(-1px);
-    background: rgba(255,255,255,0.08);
-    box-shadow: 0 0 18px rgba(0,212,255,0.22);
-}
-
-.copy-status {
-    margin-top: 12px;
-    font-size: 13px;
-    color: #7dd3fc;
-    min-height: 18px;
-}
-
 label, .stSelectbox label, .stTextInput label, .stTextArea label {
     color: #E5E7EB !important;
     font-weight: 600 !important;
@@ -2968,9 +2910,6 @@ USE_CASE_CONFIG = {
     }
 }
 
-# -------------------------------
-# STYLE INSTRUCTIONS
-# -------------------------------
 STYLE_GUIDE = {
     "Professional": "Use a polished, structured, confident, and professional tone.",
     "Creative": "Use engaging, imaginative, vivid, and fresh language.",
@@ -2981,9 +2920,6 @@ STYLE_GUIDE = {
     "Expert": "Use advanced, strategic, highly refined, and authoritative language."
 }
 
-# -------------------------------
-# HELPERS
-# -------------------------------
 def clean_text(value: str) -> str:
     return value.strip() if value else ""
 
@@ -3008,7 +2944,6 @@ def build_final_prompt(use_case, topic, style, audience, extra_details):
             f"Keep the language natural, confident, and modern while avoiding vague or generic statements."
             f"{extra}"
         )
-
     elif use_case == "Content Writing":
         return (
             f"Act as an expert content writer and strategist. Create high-quality content about {topic} for {audience}. "
@@ -3017,7 +2952,6 @@ def build_final_prompt(use_case, topic, style, audience, extra_details):
             f"Ensure the writing feels polished, natural, and ready to publish."
             f"{extra}"
         )
-
     elif use_case == "Coding":
         return (
             f"Act as a senior software engineer and coding assistant. Help with {topic} for {audience}. "
@@ -3025,7 +2959,6 @@ def build_final_prompt(use_case, topic, style, audience, extra_details):
             f"Include explanations where useful, handle edge cases when relevant, and keep the solution practical and maintainable."
             f"{extra}"
         )
-
     elif use_case == "Business":
         return (
             f"Act as a strategic business consultant. Create a clear, practical, and insight-driven response about {topic} for {audience}. "
@@ -3033,7 +2966,6 @@ def build_final_prompt(use_case, topic, style, audience, extra_details):
             f"Make the output structured, professional, and useful for decision-making."
             f"{extra}"
         )
-
     elif use_case == "Students":
         return (
             f"Act as an expert tutor and educational mentor. Explain or create content about {topic} for {audience}. "
@@ -3041,7 +2973,6 @@ def build_final_prompt(use_case, topic, style, audience, extra_details):
             f"Use simple explanations, step-by-step clarity, and examples wherever helpful."
             f"{extra}"
         )
-
     elif use_case == "Marketing":
         return (
             f"Act as an expert marketing strategist and copywriter. Create marketing content for {topic} aimed at {audience}. "
@@ -3049,7 +2980,6 @@ def build_final_prompt(use_case, topic, style, audience, extra_details):
             f"Make the output compelling, strategic, and ready for practical campaign use."
             f"{extra}"
         )
-
     elif use_case == "Startup Ideas":
         return (
             f"Act as an innovative startup advisor and product strategist. Generate strong ideas and strategic thinking around {topic} for {audience}. "
@@ -3057,7 +2987,6 @@ def build_final_prompt(use_case, topic, style, audience, extra_details):
             f"Keep the output practical, high-value, and startup-ready."
             f"{extra}"
         )
-
     elif use_case == "Social Media":
         return (
             f"Act as a social media strategist and content creator. Create content around {topic} for {audience}. "
@@ -3065,7 +2994,6 @@ def build_final_prompt(use_case, topic, style, audience, extra_details):
             f"Use strong hooks, clear flow, and content that encourages interaction or retention."
             f"{extra}"
         )
-
     elif use_case == "Email Writing":
         return (
             f"Act as a professional communication expert. Write an effective email about {topic} for {audience}. "
@@ -3073,7 +3001,6 @@ def build_final_prompt(use_case, topic, style, audience, extra_details):
             f"Ensure the message has a strong subject line if relevant, natural wording, and a professional tone."
             f"{extra}"
         )
-
     elif use_case == "Image Generation":
         return (
             f"Create an ultra-clear, highly descriptive image generation prompt for {topic}, designed for {audience}. "
@@ -3081,7 +3008,6 @@ def build_final_prompt(use_case, topic, style, audience, extra_details):
             f"Make the final prompt visually rich, precise, and directly usable in image generation tools like Midjourney or similar platforms."
             f"{extra}"
         )
-
     elif use_case == "YouTube Scripts":
         return (
             f"Act as an expert YouTube scriptwriter. Write a high-retention script about {topic} for {audience}. "
@@ -3089,7 +3015,6 @@ def build_final_prompt(use_case, topic, style, audience, extra_details):
             f"Make the script natural, audience-focused, and optimized for watch time and clarity."
             f"{extra}"
         )
-
     else:
         return (
             f"Act as an expert assistant. Create a high-quality response about {topic} for {audience}. "
@@ -3099,7 +3024,7 @@ def build_final_prompt(use_case, topic, style, audience, extra_details):
         )
 
 def render_copyable_prompt(prompt_text: str):
-    escaped_prompt = html.escape(prompt_text)
+    escaped_prompt = html.escape(prompt_text).replace("\n", "<br>")
     js_safe_prompt = (
         prompt_text
         .replace("\\", "\\\\")
@@ -3109,43 +3034,118 @@ def render_copyable_prompt(prompt_text: str):
 
     components.html(
         f"""
-        <div class="prompt-card">
-            <div class="prompt-header">
-                <div class="prompt-title">🎯 Prompt</div>
-                <button class="copy-btn" onclick="copyPrompt()" title="Copy prompt">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                    </svg>
-                </button>
-            </div>
-            <div class="prompt-body">{escaped_prompt}</div>
-            <div id="copy-status" class="copy-status"></div>
-        </div>
-
-        <script>
-        async function copyPrompt() {{
-            const text = `{js_safe_prompt}`;
-            const status = document.getElementById("copy-status");
-            try {{
-                await navigator.clipboard.writeText(text);
-                status.innerText = "Copied to clipboard";
-                setTimeout(() => {{
-                    status.innerText = "";
-                }}, 1800);
-            }} catch (err) {{
-                status.innerText = "Copy failed";
+        <html>
+        <head>
+        <style>
+            body {{
+                margin: 0;
+                padding: 0;
+                background: transparent;
+                font-family: Inter, Arial, sans-serif;
+                color: white;
             }}
-        }}
-        </script>
+
+            .prompt-card {{
+                width: 100%;
+                box-sizing: border-box;
+                background: linear-gradient(135deg, rgba(17,24,39,0.98), rgba(30,41,59,0.98));
+                border: 1px solid rgba(0,212,255,0.22);
+                border-radius: 22px;
+                padding: 24px;
+                box-shadow: 0 0 25px rgba(0,212,255,0.10), 0 0 35px rgba(168,85,247,0.10);
+            }}
+
+            .prompt-title {{
+                font-size: 22px;
+                font-weight: 800;
+                color: #ffffff;
+                margin-bottom: 16px;
+            }}
+
+            .prompt-body {{
+                font-size: 16px;
+                line-height: 1.9;
+                color: #F8FAFC;
+                word-wrap: break-word;
+                overflow-wrap: break-word;
+                white-space: normal;
+                margin-bottom: 22px;
+            }}
+
+            .prompt-footer {{
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+                gap: 12px;
+            }}
+
+            .copy-btn {{
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                width: 44px;
+                height: 44px;
+                border-radius: 14px;
+                border: 1px solid rgba(255,255,255,0.10);
+                background: rgba(255,255,255,0.05);
+                color: white;
+                cursor: pointer;
+                transition: all 0.25s ease;
+                box-shadow: 0 0 12px rgba(0,212,255,0.10);
+            }}
+
+            .copy-btn:hover {{
+                transform: translateY(-1px);
+                background: rgba(255,255,255,0.08);
+                box-shadow: 0 0 18px rgba(0,212,255,0.22);
+            }}
+
+            .copy-status {{
+                font-size: 13px;
+                color: #7dd3fc;
+                min-width: 110px;
+                text-align: right;
+            }}
+        </style>
+        </head>
+        <body>
+            <div class="prompt-card">
+                <div class="prompt-title">🎯 Prompt</div>
+                <div class="prompt-body">{escaped_prompt}</div>
+
+                <div class="prompt-footer">
+                    <div id="copy-status" class="copy-status"></div>
+                    <button class="copy-btn" onclick="copyPrompt()" title="Copy prompt">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <script>
+            async function copyPrompt() {{
+                const text = `{js_safe_prompt}`;
+                const status = document.getElementById("copy-status");
+                try {{
+                    await navigator.clipboard.writeText(text);
+                    status.innerText = "Copied";
+                    setTimeout(() => {{
+                        status.innerText = "";
+                    }}, 1500);
+                }} catch (err) {{
+                    status.innerText = "Copy failed";
+                }}
+            }}
+            </script>
+        </body>
+        </html>
         """,
-        height=260,
+        height=320,
         scrolling=False
     )
 
-# -------------------------------
-# SIDEBAR
-# -------------------------------
 with st.sidebar:
     st.markdown("""
     <div class="sidebar-logo">
@@ -3181,9 +3181,6 @@ with st.sidebar:
     - Expert  
     """)
 
-# -------------------------------
-# HERO
-# -------------------------------
 st.markdown("""
 <div class="hero-card">
     <div class="badge">🚀 AI Prompt Workspace</div>
@@ -3195,9 +3192,6 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-# -------------------------------
-# INPUTS
-# -------------------------------
 use_case_options = list(USE_CASE_CONFIG.keys())
 
 col1, col2 = st.columns(2)
@@ -3216,10 +3210,7 @@ with col2:
 col3, col4 = st.columns(2)
 
 with col3:
-    topic = st.text_input(
-        "Topic / Goal",
-        placeholder=config["topic_placeholder"]
-    )
+    topic = st.text_input("Topic / Goal", placeholder=config["topic_placeholder"])
     st.markdown(
         f"""
         <div class="example-box">
@@ -3233,10 +3224,7 @@ with col3:
     )
 
 with col4:
-    audience = st.text_input(
-        "Target Audience",
-        placeholder=config["audience_placeholder"]
-    )
+    audience = st.text_input("Target Audience", placeholder=config["audience_placeholder"])
     st.markdown(
         '<div class="small-note">Audience suggestions change based on selected use case.</div>',
         unsafe_allow_html=True
@@ -3248,9 +3236,6 @@ extra_details = st.text_area(
     height=150
 )
 
-# -------------------------------
-# BUTTONS
-# -------------------------------
 btn1, btn2 = st.columns([2, 1])
 
 with btn1:
@@ -3270,9 +3255,6 @@ with btn2:
     if st.button("🗑 Clear"):
         st.session_state.generated_prompt = ""
 
-# -------------------------------
-# OUTPUT
-# -------------------------------
 st.markdown('<div class="section-title">Prompt’s Generation</div>', unsafe_allow_html=True)
 
 if st.session_state.generated_prompt:
@@ -3287,9 +3269,6 @@ else:
     </div>
     """, unsafe_allow_html=True)
 
-# -------------------------------
-# FEATURES
-# -------------------------------
 st.markdown('<div class="section-title">Why PromptNexus AI?</div>', unsafe_allow_html=True)
 
 f1, f2, f3 = st.columns(3)
@@ -3309,7 +3288,7 @@ with f2:
     <div class="feature-card">
         <div class="feature-title">📋 One-Click Copy</div>
         <div class="feature-text">
-            Copy the final prompt instantly from the icon inside the prompt card, without needing a separate copy section.
+            Copy the final prompt instantly from the icon placed neatly at the end of the prompt card.
         </div>
     </div>
     """, unsafe_allow_html=True)
@@ -3324,12 +3303,9 @@ with f3:
     </div>
     """, unsafe_allow_html=True)
 
-# -------------------------------
-# FOOTER
-# -------------------------------
 st.markdown("""
 <br>
 <div style="text-align:center; color:#94A3B8; font-size:14px; padding-bottom:10px;">
-    Built with ❤️ By Ganesh Goddillafor smarter prompting • <b>PromptNexus AI</b>
+    Built with ❤️ By Ganesh Goddilla for smarter prompting • <b>PromptNexus AI</b>
 </div>
 """, unsafe_allow_html=True)
