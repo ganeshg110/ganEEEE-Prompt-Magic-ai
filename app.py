@@ -3423,7 +3423,7 @@ section[data-testid="stSidebar"] {
     font-size: 15px;
 }
 
-label, .stSelectbox label, .stTextInput label, .stTextArea label {
+label, .stSelectbox label, .stTextInput label, .stTextArea label, .stSlider label, .stNumberInput label {
     color: #E5E7EB !important;
     font-weight: 600 !important;
 }
@@ -3497,6 +3497,29 @@ label, .stSelectbox label, .stTextInput label, .stTextArea label {
     margin-top: -5px;
     margin-bottom: 12px;
 }
+
+.advanced-note {
+    color: #a5b4fc;
+    font-size: 13px;
+    margin-top: 4px;
+}
+
+.stExpander {
+    border: 1px solid rgba(255,255,255,0.08) !important;
+    border-radius: 16px !important;
+    overflow: hidden;
+}
+
+.prompt-chip {
+    display: inline-block;
+    padding: 6px 10px;
+    margin: 4px 6px 4px 0;
+    border-radius: 999px;
+    font-size: 12px;
+    color: #e2e8f0;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+}
 </style>
 """, unsafe_allow_html=True)
 
@@ -3507,7 +3530,7 @@ USE_CASE_CONFIG = {
     "Content Writing": {
         "topic_placeholder": "e.g. Write a blog post on AI tools for productivity",
         "audience_placeholder": "e.g. content creators, bloggers, marketers",
-        "extra_placeholder": "Add tone, length, SEO keywords, platform, CTA, and structure needs.",
+        "extra_placeholder": "Add tone, length, SEO keywords, platform, CTA, and output format.",
         "examples": [
             "Instagram caption for a fitness brand launch",
             "SEO blog post on beginner MLOps roadmap",
@@ -3515,9 +3538,9 @@ USE_CASE_CONFIG = {
         ]
     },
     "Coding": {
-        "topic_placeholder": "e.g. Build a Streamlit app for AI prompt generation",
+        "topic_placeholder": "e.g. Build a Python script for file organizer automation",
         "audience_placeholder": "e.g. Python developers, beginners, backend engineers",
-        "extra_placeholder": "Mention language, framework, output format, best practices, edge cases, and constraints.",
+        "extra_placeholder": "Mention language, framework, edge cases, output style, and constraints.",
         "examples": [
             "Streamlit app for AI prompt generator",
             "FastAPI REST API with authentication",
@@ -3527,7 +3550,7 @@ USE_CASE_CONFIG = {
     "Business": {
         "topic_placeholder": "e.g. Create a startup idea for AI resume review tool",
         "audience_placeholder": "e.g. startup founders, consultants, entrepreneurs",
-        "extra_placeholder": "Mention industry, target market, budget, revenue model, and strategic goals.",
+        "extra_placeholder": "Mention industry, users, pricing, business goal, and market angle.",
         "examples": [
             "Business plan for a faceless YouTube automation agency",
             "Pricing strategy for AI SaaS tool",
@@ -3537,7 +3560,7 @@ USE_CASE_CONFIG = {
     "Students": {
         "topic_placeholder": "e.g. Explain neural networks in simple terms",
         "audience_placeholder": "e.g. school students, college students, exam aspirants",
-        "extra_placeholder": "Mention difficulty level, subject, exam type, explanation style, and examples needed.",
+        "extra_placeholder": "Mention subject, difficulty, answer style, format, and examples needed.",
         "examples": [
             "Study notes for DBMS interview preparation",
             "Simple explanation of cloud computing",
@@ -3546,8 +3569,8 @@ USE_CASE_CONFIG = {
     },
     "General Use": {
         "topic_placeholder": "e.g. Write a professional email requesting project access",
-        "audience_placeholder": "e.g. professionals, general users, freelancers",
-        "extra_placeholder": "Mention tone, context, recipient, expected format, and important details.",
+        "audience_placeholder": "e.g. professionals, freelancers, general users",
+        "extra_placeholder": "Mention context, tone, recipient, and desired structure.",
         "examples": [
             "Professional apology email to manager",
             "Daily planner for a productive workday",
@@ -3557,7 +3580,7 @@ USE_CASE_CONFIG = {
     "Marketing": {
         "topic_placeholder": "e.g. Create ad copy for eco-friendly water bottle",
         "audience_placeholder": "e.g. customers, marketers, D2C brands",
-        "extra_placeholder": "Mention platform, product, brand voice, CTA, target market, and campaign goal.",
+        "extra_placeholder": "Mention product, platform, brand tone, CTA, and campaign goal.",
         "examples": [
             "Facebook ad copy for skincare product",
             "Email campaign for Black Friday sale",
@@ -3565,9 +3588,9 @@ USE_CASE_CONFIG = {
         ]
     },
     "Resume / Career": {
-        "topic_placeholder": "e.g. LinkedIn About section for fresher in MLOps",
+        "topic_placeholder": "e.g. Rewrite my resume summary for MLOps engineer role",
         "audience_placeholder": "e.g. recruiters, hiring managers, job seekers",
-        "extra_placeholder": "Mention target role, years of experience, industry, skills, and desired tone.",
+        "extra_placeholder": "Mention target role, experience level, key skills, and tone.",
         "examples": [
             "Resume bullet points for Python developer",
             "Cover letter for GenAI engineer role",
@@ -3577,7 +3600,7 @@ USE_CASE_CONFIG = {
     "Startup Ideas": {
         "topic_placeholder": "e.g. Generate startup ideas using GenAI in education",
         "audience_placeholder": "e.g. founders, investors, builders",
-        "extra_placeholder": "Mention niche, monetization preference, user pain points, and innovation level.",
+        "extra_placeholder": "Mention niche, user pain point, monetization, and business type.",
         "examples": [
             "Low-cost AI SaaS ideas for India",
             "B2B startup idea for internal documentation",
@@ -3587,7 +3610,7 @@ USE_CASE_CONFIG = {
     "Social Media": {
         "topic_placeholder": "e.g. Create 10 reel ideas for AI productivity content",
         "audience_placeholder": "e.g. Instagram audience, creators, YouTube viewers",
-        "extra_placeholder": "Mention platform, tone, niche, content length, hook style, and target audience.",
+        "extra_placeholder": "Mention platform, tone, hook style, audience, and niche.",
         "examples": [
             "YouTube Shorts script on AI tools",
             "Twitter thread on beginner coding mistakes",
@@ -3597,7 +3620,7 @@ USE_CASE_CONFIG = {
     "Email Writing": {
         "topic_placeholder": "e.g. Draft an email asking for project status update",
         "audience_placeholder": "e.g. manager, HR, client, colleague",
-        "extra_placeholder": "Mention sender intent, recipient, tone, urgency, and required action.",
+        "extra_placeholder": "Mention sender goal, urgency, context, and tone.",
         "examples": [
             "Leave request email",
             "Follow-up email after interview",
@@ -3606,8 +3629,8 @@ USE_CASE_CONFIG = {
     },
     "Image Generation": {
         "topic_placeholder": "e.g. Marvel-style superhero poster in pastel space",
-        "audience_placeholder": "e.g. creators, Midjourney users, designers",
-        "extra_placeholder": "Mention subject, art style, colors, lighting, camera angle, mood, textures, quality, aspect ratio, and render style.",
+        "audience_placeholder": "e.g. creators, designers, Midjourney users",
+        "extra_placeholder": "Mention any must-have visual details, elements, or restrictions.",
         "examples": [
             "Anime warrior in neon city at night",
             "Luxury product ad shot with soft lighting",
@@ -3617,7 +3640,7 @@ USE_CASE_CONFIG = {
     "YouTube Scripts": {
         "topic_placeholder": "e.g. Write a 60-second YouTube script on top AI tools",
         "audience_placeholder": "e.g. YouTube viewers, beginners, tech audience",
-        "extra_placeholder": "Mention niche, duration, hook style, CTA, tone, and retention style.",
+        "extra_placeholder": "Mention duration, tone, niche, hook style, CTA, and pacing.",
         "examples": [
             "60-second script for motivation reel",
             "Faceless finance video script",
@@ -3627,14 +3650,57 @@ USE_CASE_CONFIG = {
 }
 
 STYLE_GUIDE = {
-    "Professional": "polished, structured, confident, and professional",
-    "Creative": "imaginative, vivid, engaging, and expressive",
-    "Minimal": "concise, sharp, clean, and direct",
-    "Cinematic": "dramatic, immersive, visually rich, and emotionally powerful",
-    "Anime": "stylized, vibrant, expressive, and dynamic",
-    "Realistic": "grounded, precise, believable, and highly detailed",
-    "Expert": "advanced, strategic, refined, and authoritative"
+    "Professional": "Use a polished, structured, confident, and professional tone.",
+    "Creative": "Use engaging, imaginative, vivid, and fresh language.",
+    "Minimal": "Keep the wording concise, sharp, and direct with no fluff.",
+    "Cinematic": "Use immersive, visually rich, dramatic, and emotionally engaging language.",
+    "Anime": "Use expressive, stylized, vibrant, and visually dynamic language.",
+    "Realistic": "Use grounded, practical, precise, and believable details.",
+    "Expert": "Use advanced, strategic, highly refined, and authoritative language."
 }
+
+# -------------------------------
+# IMAGE PROMPT OPTION SETS
+# -------------------------------
+SHOT_OPTIONS = [
+    "low-angle hero shot", "close-up portrait", "wide cinematic shot", "mid-shot composition",
+    "full-body character shot", "over-the-shoulder shot", "bird's-eye view", "dynamic action frame"
+]
+
+LIGHTING_OPTIONS = [
+    "dramatic rim lighting", "soft diffused lighting", "golden hour glow", "neon glow",
+    "volumetric god rays", "studio lighting", "moonlit ambience", "high contrast cinematic lighting"
+]
+
+MOOD_OPTIONS = [
+    "epic", "dreamy", "mysterious", "dark fantasy", "heroic", "ethereal", "intense", "calm"
+]
+
+PALETTE_OPTIONS = [
+    "pastel lavender, baby blue, mint green, peach",
+    "deep blue, violet, silver",
+    "neon cyan, magenta, purple",
+    "gold, crimson, black",
+    "warm beige, ivory, bronze",
+    "emerald, teal, obsidian"
+]
+
+CAMERA_OPTIONS = [
+    "cinematic lens feel", "85mm portrait feel", "ultra-wide lens perspective",
+    "movie poster framing", "editorial fashion framing", "DSLR realism", "anamorphic cinematic framing"
+]
+
+TEXTURE_OPTIONS = [
+    "ultra-detailed metallic textures", "soft fabric detail", "crystalline surfaces",
+    "photoreal skin detail", "glossy reflective surfaces", "matte cinematic textures"
+]
+
+RENDER_OPTIONS = [
+    "professional 8k render", "ultra-detailed digital art", "high-end concept art",
+    "AAA game art quality", "cinematic movie poster quality", "photorealistic studio render"
+]
+
+NEGATIVE_DEFAULT = "blurry, low quality, distorted anatomy, extra fingers, cropped, duplicate, watermark, text, logo, oversaturated, noisy background"
 
 # -------------------------------
 # HELPERS
@@ -3642,181 +3708,213 @@ STYLE_GUIDE = {
 def clean_text(value: str) -> str:
     return value.strip() if value else ""
 
-def titleize_topic(topic: str) -> str:
-    small_words = {"in", "of", "for", "and", "to", "with", "on", "at", "by", "the", "a", "an"}
-    words = topic.split()
-    result = []
-    for i, w in enumerate(words):
-        if i != 0 and w.lower() in small_words:
-            result.append(w.lower())
-        else:
-            result.append(w.capitalize())
-    return " ".join(result)
+def normalize_sentence(text: str) -> str:
+    text = clean_text(text)
+    if not text:
+        return ""
+    return text[0].upper() + text[1:]
 
-def extra_sentence(extra_details: str) -> str:
+def join_requirements(extra_details: str) -> str:
     extra_details = clean_text(extra_details)
-    return extra_details if extra_details else "No extra constraints provided."
+    if not extra_details:
+        return ""
+    return f" Also ensure the output follows these requirements: {extra_details}."
 
-# -------------------------------
-# PROMPT BUILDERS
-# -------------------------------
-def build_image_master_prompt(topic, style, audience, extra_details):
-    style_phrase = STYLE_GUIDE.get(style, "high-quality and detailed")
-    title = f"The Master Prompt: {titleize_topic(topic)}"
+def compact_join(parts):
+    return ", ".join([p for p in parts if clean_text(p)])
 
-    return f"""{title}
+def build_image_prompt(
+    topic: str,
+    style: str,
+    extra_details: str,
+    shot_type: str,
+    lighting: str,
+    mood: str,
+    palette: str,
+    camera: str,
+    texture: str,
+    render_quality: str,
+    aspect_ratio: str,
+    stylize: int,
+    chaos: int,
+    quality: str,
+    include_negative: bool,
+    negative_prompt: str
+) -> str:
+    topic = clean_text(topic)
+    extra_details = clean_text(extra_details)
 
-Core Concept:
-A high-impact, {style_phrase} image concept centered on {topic}, designed for {audience}. The final image should feel premium, visually cohesive, and immediately usable in advanced image-generation tools.
+    style_prefix_map = {
+        "Cinematic": "A powerful, visually striking cinematic scene of",
+        "Anime": "A highly stylized anime illustration of",
+        "Realistic": "A highly realistic, visually polished depiction of",
+        "Creative": "An imaginative, visually rich composition of",
+        "Minimal": "A clean, elegant visual composition of",
+        "Professional": "A premium, polished visual concept of",
+        "Expert": "An ultra-refined, masterfully art-directed visual of"
+    }
 
-Visual Description & Details:
+    base_prefix = style_prefix_map.get(style, "A highly detailed visual of")
 
-Subject:
-The main subject should clearly focus on {topic}. The design must emphasize strong visual identity, memorable silhouette, and rich detail. Make the subject feel intentional, visually striking, and compositionally dominant.
+    style_suffix_map = {
+        "Cinematic": "high-octane cinematic movie poster composition",
+        "Anime": "dynamic anime key visual composition",
+        "Realistic": "photorealistic premium composition",
+        "Creative": "artistic high-impact composition",
+        "Minimal": "clean premium composition",
+        "Professional": "refined commercial-grade composition",
+        "Expert": "world-class concept art composition"
+    }
 
-Setting & Environment:
-Place the subject in a visually compelling environment that enhances the idea of {topic}. The background should support the story with strong atmosphere, environmental depth, and layered visual interest instead of feeling empty or generic.
+    composition_style = style_suffix_map.get(style, "premium composition")
 
-Composition:
-Use a professional composition with a clear focal point, balanced framing, and strong visual flow. The scene should guide the viewer’s eye naturally and feel cinematic, poster-worthy, and carefully directed.
+    if style == "Anime":
+        stylize_tag = f"--stylize {stylize} --chaos {chaos} --quality {quality} --ar {aspect_ratio} --niji 6"
+    else:
+        stylize_tag = f"--stylize {stylize} --chaos {chaos} --quality {quality} --ar {aspect_ratio}"
 
-Lighting & Mood:
-Use lighting that enhances the emotional impact of the scene. The mood should match the concept of {topic} while maintaining a premium, polished, visually dramatic finish.
+    body_parts = [
+        f"{base_prefix} {topic}",
+        f"{shot_type}",
+        f"{mood} atmosphere",
+        f"{lighting}",
+        f"{camera}",
+        f"color palette of {palette}",
+        f"{texture}",
+        f"{composition_style}",
+        render_quality,
+        "sharp focus",
+        "intricate details",
+        "depth and dimensionality"
+    ]
 
-Camera Feel & Style:
-Describe the shot like a professional creative direction brief. Include a cinematic camera feel, strong framing, and a sense of scale, depth, and visual storytelling.
+    if extra_details:
+        body_parts.append(extra_details)
 
-Colors & Textures:
-Use a cohesive palette that supports the concept. Add texture detail to surfaces, materials, fabrics, skin, armor, reflections, particles, or surrounding elements where relevant. Avoid flat or generic visuals.
+    prompt = compact_join(body_parts)
 
-Quality Cues:
-Ultra-detailed, visually rich, high resolution, sharp focus, strong composition, premium rendering quality, intricate detail, professional-grade finish.
+    if include_negative:
+        neg = clean_text(negative_prompt) or NEGATIVE_DEFAULT
+        prompt = f"{prompt} --no {neg}"
 
-Additional Requirements:
-{extra_sentence(extra_details)}
+    return f"{prompt} {stylize_tag}".strip()
 
-Optimized, Direct-Usable Prompt String:
-/imagine prompt: {topic}, {style_phrase} visual treatment, highly descriptive subject, cinematic environment, strong composition, premium lighting, clear focal point, rich textures, cohesive color palette, atmospheric depth, ultra-detailed, sharp focus, high resolution, intricate details, professional quality render --ar 2:3 --stylize 750 --v 6.0
-"""
+def build_final_prompt(use_case, topic, style, audience, extra_details, image_settings):
+    topic = clean_text(topic)
+    audience = clean_text(audience) or "the intended audience"
+    extra = join_requirements(extra_details)
+    style_instruction = STYLE_GUIDE.get(style, "Use clear and high-quality language.")
 
-def build_resume_prompt(topic, style, audience, extra_details):
-    style_phrase = STYLE_GUIDE.get(style, "polished and professional")
-    return f"""Act as an experienced career coach and personal branding expert. Write a {style_phrase} {topic} tailored for {audience}. Make it impactful, natural, recruiter-friendly, and specific rather than generic. Highlight strengths, skills, value, credibility, and career direction clearly. Keep the language modern, confident, and professional. Additional requirements: {extra_sentence(extra_details)}"""
-
-def build_content_prompt(topic, style, audience, extra_details):
-    style_phrase = STYLE_GUIDE.get(style, "engaging and polished")
-    return f"""Act as an expert content strategist and professional writer. Create high-quality content on {topic} for {audience}. The writing should be {style_phrase}, easy to read, well-structured, and valuable. Include a strong opening, smooth flow, relevant insights, and a compelling ending. Additional requirements: {extra_sentence(extra_details)}"""
-
-def build_coding_prompt(topic, style, audience, extra_details):
-    style_phrase = STYLE_GUIDE.get(style, "clear and professional")
-    return f"""Act as a senior software engineer and coding assistant. Help with {topic} for {audience}. Use a {style_phrase} approach. Provide clean, correct, production-quality output with readable structure, best practices, practical logic, and useful explanations where needed. Additional requirements: {extra_sentence(extra_details)}"""
-
-def build_business_prompt(topic, style, audience, extra_details):
-    style_phrase = STYLE_GUIDE.get(style, "strategic and refined")
-    return f"""Act as a strategic business consultant. Create a {style_phrase} response about {topic} for {audience}. Focus on execution, business value, practical ideas, realistic recommendations, and clear decision-making value. Additional requirements: {extra_sentence(extra_details)}"""
-
-def build_students_prompt(topic, style, audience, extra_details):
-    style_phrase = STYLE_GUIDE.get(style, "clear and easy to understand")
-    return f"""Act as an expert tutor and educational mentor. Explain or create content about {topic} for {audience}. Keep it {style_phrase}, accurate, well-structured, and educational. Use step-by-step clarity and examples where helpful. Additional requirements: {extra_sentence(extra_details)}"""
-
-def build_marketing_prompt(topic, style, audience, extra_details):
-    style_phrase = STYLE_GUIDE.get(style, "persuasive and polished")
-    return f"""Act as an expert marketing strategist and copywriter. Create marketing content for {topic} aimed at {audience}. Make it {style_phrase}, audience-focused, conversion-aware, and brand-relevant. Use strong messaging, clear positioning, and compelling wording. Additional requirements: {extra_sentence(extra_details)}"""
-
-def build_startup_prompt(topic, style, audience, extra_details):
-    style_phrase = STYLE_GUIDE.get(style, "innovative and practical")
-    return f"""Act as a startup advisor and product strategist. Generate ideas and strategic thinking around {topic} for {audience}. Keep the output {style_phrase}, market-aware, solution-oriented, and monetization-conscious. Focus on pain points, differentiation, and execution potential. Additional requirements: {extra_sentence(extra_details)}"""
-
-def build_social_prompt(topic, style, audience, extra_details):
-    style_phrase = STYLE_GUIDE.get(style, "engaging and platform-friendly")
-    return f"""Act as a social media strategist and creator. Create content around {topic} for {audience}. Make it {style_phrase}, attention-grabbing, easy to consume, and optimized for interaction and retention. Use strong hooks, clarity, and audience relevance. Additional requirements: {extra_sentence(extra_details)}"""
-
-def build_email_prompt(topic, style, audience, extra_details):
-    style_phrase = STYLE_GUIDE.get(style, "professional and clear")
-    return f"""Act as a professional communication expert. Write an email about {topic} for {audience}. The email should be {style_phrase}, purposeful, natural, and appropriate for the situation. Keep the wording polished and action-oriented. Additional requirements: {extra_sentence(extra_details)}"""
-
-def build_youtube_prompt(topic, style, audience, extra_details):
-    style_phrase = STYLE_GUIDE.get(style, "engaging and high-retention")
-    return f"""Act as an expert YouTube scriptwriter. Write a script about {topic} for {audience}. Make it {style_phrase}, audience-focused, and easy to follow. Start with a strong hook, maintain momentum throughout, and end with a strong CTA or closing. Additional requirements: {extra_sentence(extra_details)}"""
-
-def build_general_prompt(topic, style, audience, extra_details):
-    style_phrase = STYLE_GUIDE.get(style, "clear and high-quality")
-    return f"""Act as an expert assistant. Create a {style_phrase} response about {topic} for {audience}. Make the output useful, polished, practical, and directly usable. Additional requirements: {extra_sentence(extra_details)}"""
-
-def build_final_prompt(use_case, topic, style, audience, extra_details):
-
-    topic = topic.strip()
-    extra = extra_details.strip()
-
-    # -------------------------------
-    # 🎨 IMAGE GENERATION (FIXED 🔥)
-    # -------------------------------
     if use_case == "Image Generation":
-
-        if style == "Cinematic":
-            return f"""
-A powerful, visually striking scene of {topic}. The subject is positioned in a dramatic low-angle composition, creating a sense of scale and dominance. 
-Intricate details with high realism and stylized cinematic depth. 
-
-Environment filled with atmospheric elements such as fog, particles, glowing energy, and dynamic motion. 
-Lighting is dramatic with strong rim lighting, soft volumetric glows, and high contrast shadows.
-
-Color palette features rich tones with complementary highlights, creating a visually immersive experience. 
-Textures are ultra-detailed, with sharp focus and depth of field.
-
-Epic composition, movie-poster quality, cinematic framing, highly detailed, 8K resolution, ultra-realistic rendering, professional lighting --ar 2:3 --stylize 750
-""".strip()
-
-        elif style == "Anime":
-            return f"""
-A highly stylized anime scene of {topic}, featuring expressive character design and vibrant visual storytelling. 
-Dynamic pose with flowing motion elements such as hair, fabric, or energy effects.
-
-Background includes detailed anime-style environment with glowing lights, dramatic sky, and depth. 
-Color palette is vibrant with high contrast and soft gradients.
-
-Clean line art, sharp shading, glowing highlights, dramatic perspective, cinematic anime composition, ultra-detailed, high quality anime render --ar 2:3 --niji 6
-""".strip()
-
-        elif style == "Realistic":
-            return f"""
-A highly realistic depiction of {topic}, captured with professional photography style. 
-Natural lighting with soft shadows and accurate reflections.
-
-Environment is detailed and grounded, with realistic textures and depth. 
-Fine details such as skin, fabric, surfaces, and lighting interactions are clearly visible.
-
-Photorealistic, ultra high resolution, sharp focus, cinematic depth of field, professional DSLR quality, 8K render
-""".strip()
-
-        else:
-            return f"""
-A detailed visual representation of {topic}, designed with strong composition and clarity. 
-Balanced lighting, realistic depth, and clean structure.
-
-High detail, visually appealing, professional quality rendering, sharp focus, modern digital art style.
-""".strip()
-
-    # -------------------------------
-    # 🧠 OTHER USE CASES (UNCHANGED)
-    # -------------------------------
-    if use_case == "Coding":
-        return f"""
-Act as a senior software engineer. Help with {topic}. Provide clean, production-ready code with proper structure, readability, and best practices. Include explanations where necessary.
-""".strip()
+        return build_image_prompt(
+            topic=topic,
+            style=style,
+            extra_details=extra_details,
+            shot_type=image_settings["shot_type"],
+            lighting=image_settings["lighting"],
+            mood=image_settings["mood"],
+            palette=image_settings["palette"],
+            camera=image_settings["camera"],
+            texture=image_settings["texture"],
+            render_quality=image_settings["render_quality"],
+            aspect_ratio=image_settings["aspect_ratio"],
+            stylize=image_settings["stylize"],
+            chaos=image_settings["chaos"],
+            quality=image_settings["quality"],
+            include_negative=image_settings["include_negative"],
+            negative_prompt=image_settings["negative_prompt"]
+        )
 
     if use_case == "Resume / Career":
-        return f"""
-Write a strong, professional, and impactful response about {topic} tailored for {audience}. Focus on clarity, confidence, and real-world hiring value.
-""".strip()
+        return (
+            f"Act as an experienced career coach and professional personal branding expert. "
+            f"Write a strong, polished, and recruiter-friendly response about {topic} for {audience}. "
+            f"{style_instruction} Make the output clear, impactful, and tailored for real hiring scenarios. "
+            f"Highlight strengths, value, credibility, and professional positioning. "
+            f"Keep the language natural, confident, and modern while avoiding vague or generic statements."
+            f"{extra}"
+        )
 
-    # fallback
-    return f"""
-Generate a clear, useful, and professional response about {topic} for {audience}.
-""".strip()
-# -------------------------------
-# COPYABLE PROMPT CARD
-# -------------------------------
+    if use_case == "Content Writing":
+        return (
+            f"Act as an expert content writer and strategist. Create high-quality content about {topic} for {audience}. "
+            f"{style_instruction} Make the response engaging, well-structured, easy to read, and valuable to the target audience. "
+            f"Include a strong opening, smooth flow, relevant details, and a compelling ending. "
+            f"Ensure the writing feels polished, natural, and ready to publish."
+            f"{extra}"
+        )
+
+    if use_case == "Coding":
+        return (
+            f"Act as a senior software engineer and coding assistant. Help with {topic} for {audience}. "
+            f"{style_instruction} Provide clean, correct, production-quality output with clear logic, readable structure, and best practices. "
+            f"Include explanations where useful, handle edge cases when relevant, and keep the solution practical and maintainable."
+            f"{extra}"
+        )
+
+    if use_case == "Business":
+        return (
+            f"Act as a strategic business consultant. Create a clear, practical, and insight-driven response about {topic} for {audience}. "
+            f"{style_instruction} Focus on business value, execution, realistic strategy, and actionable recommendations. "
+            f"Make the output structured, professional, and useful for decision-making."
+            f"{extra}"
+        )
+
+    if use_case == "Students":
+        return (
+            f"Act as an expert tutor and educational mentor. Explain or create content about {topic} for {audience}. "
+            f"{style_instruction} Make the response easy to understand, well-structured, accurate, and educational. "
+            f"Use simple explanations, step-by-step clarity, and examples wherever helpful."
+            f"{extra}"
+        )
+
+    if use_case == "Marketing":
+        return (
+            f"Act as an expert marketing strategist and copywriter. Create marketing content for {topic} aimed at {audience}. "
+            f"{style_instruction} Focus on audience attention, clarity, persuasion, brand relevance, and conversion potential. "
+            f"Make the output compelling, strategic, and ready for practical campaign use."
+            f"{extra}"
+        )
+
+    if use_case == "Startup Ideas":
+        return (
+            f"Act as an innovative startup advisor and product strategist. Generate strong ideas and strategic thinking around {topic} for {audience}. "
+            f"{style_instruction} Focus on real user pain points, market opportunity, differentiation, monetization, and execution potential. "
+            f"Keep the output practical, high-value, and startup-ready."
+            f"{extra}"
+        )
+
+    if use_case == "Social Media":
+        return (
+            f"Act as a social media strategist and content creator. Create content around {topic} for {audience}. "
+            f"{style_instruction} Make the output attention-grabbing, platform-friendly, engaging, and easy to consume. "
+            f"Use strong hooks, clear flow, and content that encourages interaction or retention."
+            f"{extra}"
+        )
+
+    if use_case == "Email Writing":
+        return (
+            f"Act as a professional communication expert. Write an effective email about {topic} for {audience}. "
+            f"{style_instruction} Make the email clear, polished, purposeful, and appropriate for the situation. "
+            f"Ensure the message has a strong subject line if relevant, natural wording, and a professional tone."
+            f"{extra}"
+        )
+
+    if use_case == "YouTube Scripts":
+        return (
+            f"Act as an expert YouTube scriptwriter. Write a high-retention script about {topic} for {audience}. "
+            f"{style_instruction} Start with a strong hook, maintain clear pacing, keep the content engaging, and end with a strong closing or CTA. "
+            f"Make the script natural, audience-focused, and optimized for watch time and clarity."
+            f"{extra}"
+        )
+
+    return (
+        f"Act as an expert assistant. Create a high-quality response about {topic} for {audience}. "
+        f"{style_instruction} Make the output clear, useful, polished, and practical. "
+        f"Ensure the final result is easy to understand and directly usable."
+        f"{extra}"
+    )
+
 def render_copyable_prompt(prompt_text: str):
     escaped_prompt = html.escape(prompt_text).replace("\n", "<br>")
     js_safe_prompt = (
@@ -3826,143 +3924,118 @@ def render_copyable_prompt(prompt_text: str):
         .replace("${", "\\${")
     )
 
-    html_code = f"""
-    <html>
-    <head>
-    <style>
-        body {{
-            margin: 0;
-            padding: 0;
-            background: transparent;
-            font-family: Inter, Arial, sans-serif;
-            color: white;
-        }}
-
-        .prompt-card {{
-            width: 100%;
-            box-sizing: border-box;
-            background: linear-gradient(135deg, rgba(17,24,39,0.98), rgba(30,41,59,0.98));
-            border: 1px solid rgba(0,212,255,0.22);
-            border-radius: 22px;
-            padding: 24px;
-            box-shadow: 0 0 25px rgba(0,212,255,0.10), 0 0 35px rgba(168,85,247,0.10);
-        }}
-
-        .prompt-title {{
-            font-size: 22px;
-            font-weight: 800;
-            color: #ffffff;
-            margin-bottom: 16px;
-        }}
-
-        .prompt-body-wrap {{
-            max-height: 620px;
-            overflow-y: auto;
-            padding-right: 8px;
-            margin-bottom: 22px;
-        }}
-
-        .prompt-body {{
-            font-size: 15px;
-            line-height: 1.9;
-            color: #F8FAFC;
-            word-wrap: break-word;
-            overflow-wrap: break-word;
-            white-space: normal;
-        }}
-
-        .prompt-footer {{
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-            gap: 12px;
-        }}
-
-        .copy-btn {{
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 44px;
-            height: 44px;
-            border-radius: 14px;
-            border: 1px solid rgba(255,255,255,0.10);
-            background: rgba(255,255,255,0.05);
-            color: white;
-            cursor: pointer;
-            transition: all 0.25s ease;
-            box-shadow: 0 0 12px rgba(0,212,255,0.10);
-        }}
-
-        .copy-btn:hover {{
-            transform: translateY(-1px);
-            background: rgba(255,255,255,0.08);
-            box-shadow: 0 0 18px rgba(0,212,255,0.22);
-        }}
-
-        .copy-status {{
-            font-size: 13px;
-            color: #7dd3fc;
-            min-width: 110px;
-            text-align: right;
-        }}
-
-        .prompt-body-wrap::-webkit-scrollbar {{
-            width: 8px;
-        }}
-
-        .prompt-body-wrap::-webkit-scrollbar-thumb {{
-            background: rgba(125, 211, 252, 0.35);
-            border-radius: 10px;
-        }}
-
-        .prompt-body-wrap::-webkit-scrollbar-track {{
-            background: rgba(255,255,255,0.04);
-            border-radius: 10px;
-        }}
-    </style>
-    </head>
-    <body>
-        <div class="prompt-card">
-            <div class="prompt-title">🎯 Prompt</div>
-
-            <div class="prompt-body-wrap">
-                <div class="prompt-body">{escaped_prompt}</div>
-            </div>
-
-            <div class="prompt-footer">
-                <div id="copy-status" class="copy-status"></div>
-                <button class="copy-btn" onclick="copyPrompt()" title="Copy prompt">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                    </svg>
-                </button>
-            </div>
-        </div>
-
-        <script>
-        async function copyPrompt() {{
-            const text = `{js_safe_prompt}`;
-            const status = document.getElementById("copy-status");
-            try {{
-                await navigator.clipboard.writeText(text);
-                status.innerText = "Copied";
-                setTimeout(() => {{
-                    status.innerText = "";
-                }}, 1500);
-            }} catch (err) {{
-                status.innerText = "Copy failed";
-            }}
-        }}
-        </script>
-    </body>
-    </html>
-    """
-
     components.html(
-        html_code,
-        height=900,
-        scrolling=True
+        f"""
+        <html>
+        <head>
+        <style>
+            body {{
+                margin: 0;
+                padding: 0;
+                background: transparent;
+                font-family: Inter, Arial, sans-serif;
+                color: white;
+            }}
+
+            .prompt-card {{
+                width: 100%;
+                box-sizing: border-box;
+                background: linear-gradient(135deg, rgba(17,24,39,0.98), rgba(30,41,59,0.98));
+                border: 1px solid rgba(0,212,255,0.22);
+                border-radius: 22px;
+                padding: 24px;
+                box-shadow: 0 0 25px rgba(0,212,255,0.10), 0 0 35px rgba(168,85,247,0.10);
+            }}
+
+            .prompt-title {{
+                font-size: 22px;
+                font-weight: 800;
+                color: #ffffff;
+                margin-bottom: 16px;
+            }}
+
+            .prompt-body {{
+                font-size: 16px;
+                line-height: 1.9;
+                color: #F8FAFC;
+                word-wrap: break-word;
+                overflow-wrap: break-word;
+                white-space: normal;
+                margin-bottom: 22px;
+            }}
+
+            .prompt-footer {{
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+                gap: 12px;
+            }}
+
+            .copy-btn {{
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                width: 44px;
+                height: 44px;
+                border-radius: 14px;
+                border: 1px solid rgba(255,255,255,0.10);
+                background: rgba(255,255,255,0.05);
+                color: white;
+                cursor: pointer;
+                transition: all 0.25s ease;
+                box-shadow: 0 0 12px rgba(0,212,255,0.10);
+            }}
+
+            .copy-btn:hover {{
+                transform: translateY(-1px);
+                background: rgba(255,255,255,0.08);
+                box-shadow: 0 0 18px rgba(0,212,255,0.22);
+            }}
+
+            .copy-status {{
+                font-size: 13px;
+                color: #7dd3fc;
+                min-width: 110px;
+                text-align: right;
+            }}
+        </style>
+        </head>
+        <body>
+            <div class="prompt-card">
+                <div class="prompt-title">🎯 Prompt</div>
+                <div class="prompt-body">{escaped_prompt}</div>
+
+                <div class="prompt-footer">
+                    <div id="copy-status" class="copy-status"></div>
+                    <button class="copy-btn" onclick="copyPrompt()" title="Copy prompt">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <script>
+            async function copyPrompt() {{
+                const text = `{js_safe_prompt}`;
+                const status = document.getElementById("copy-status");
+                try {{
+                    await navigator.clipboard.writeText(text);
+                    status.innerText = "Copied";
+                    setTimeout(() => {{
+                        status.innerText = "";
+                    }}, 1500);
+                }} catch (err) {{
+                    status.innerText = "Copy failed";
+                }}
+            }}
+            </script>
+        </body>
+        </html>
+        """,
+        height=340,
+        scrolling=False
     )
 
 # -------------------------------
@@ -4003,6 +4076,16 @@ with st.sidebar:
     - Expert  
     """)
 
+    st.markdown("### 🧪 Pro Image Features")
+    st.markdown("""
+    - Style-aware image prompting  
+    - Camera + lighting control  
+    - Mood + color palette  
+    - Aspect ratio + stylize  
+    - Chaos + quality  
+    - Optional negative prompt  
+    """)
+
 # -------------------------------
 # HERO
 # -------------------------------
@@ -4011,14 +4094,14 @@ st.markdown("""
     <div class="badge">🚀 AI Prompt Workspace</div>
     <div class="hero-title">PromptNexus AI</div>
     <div class="hero-desc">
-        Generate richer, final, ready-to-use prompts for content, coding, marketing, career growth,
-        image generation, and more.
+        Generate final, crystal-clear prompts for content, coding, career, marketing, and especially
+        ultra-detailed image generation prompts with pro-level controls.
     </div>
 </div>
 """, unsafe_allow_html=True)
 
 # -------------------------------
-# INPUTS
+# MAIN INPUTS
 # -------------------------------
 use_case_options = list(USE_CASE_CONFIG.keys())
 
@@ -4061,8 +4144,80 @@ with col4:
 extra_details = st.text_area(
     "Extra Details / Requirements",
     placeholder=config["extra_placeholder"],
-    height=160
+    height=130
 )
+
+# -------------------------------
+# IMAGE ADVANCED CONTROLS
+# -------------------------------
+default_image_settings = {
+    "shot_type": "low-angle hero shot",
+    "lighting": "dramatic rim lighting",
+    "mood": "epic",
+    "palette": "pastel lavender, baby blue, mint green, peach",
+    "camera": "movie poster framing",
+    "texture": "ultra-detailed metallic textures",
+    "render_quality": "professional 8k render",
+    "aspect_ratio": "2:3",
+    "stylize": 750,
+    "chaos": 12,
+    "quality": "1",
+    "include_negative": True,
+    "negative_prompt": NEGATIVE_DEFAULT
+}
+
+image_settings = default_image_settings.copy()
+
+if use_case == "Image Generation":
+    st.markdown('<div class="section-title">Advanced Image Controls</div>', unsafe_allow_html=True)
+
+    with st.expander("Open pro image controls", expanded=True):
+        g1, g2, g3 = st.columns(3)
+
+        with g1:
+            image_settings["shot_type"] = st.selectbox("Shot / Framing", SHOT_OPTIONS, index=0)
+            image_settings["lighting"] = st.selectbox("Lighting", LIGHTING_OPTIONS, index=0)
+            image_settings["mood"] = st.selectbox("Mood", MOOD_OPTIONS, index=0)
+
+        with g2:
+            image_settings["palette"] = st.selectbox("Color Palette", PALETTE_OPTIONS, index=0)
+            image_settings["camera"] = st.selectbox("Camera Feel", CAMERA_OPTIONS, index=3)
+            image_settings["texture"] = st.selectbox("Texture Detail", TEXTURE_OPTIONS, index=0)
+
+        with g3:
+            image_settings["render_quality"] = st.selectbox("Render Style", RENDER_OPTIONS, index=0)
+            image_settings["aspect_ratio"] = st.selectbox(
+                "Aspect Ratio",
+                ["1:1", "2:3", "3:2", "4:5", "9:16", "16:9", "21:9"],
+                index=1
+            )
+            image_settings["quality"] = st.selectbox("Quality", ["0.5", "1", "2"], index=1)
+
+        s1, s2 = st.columns(2)
+        with s1:
+            image_settings["stylize"] = st.slider("Stylize", 0, 1000, 750, 25)
+        with s2:
+            image_settings["chaos"] = st.slider("Chaos", 0, 100, 12, 1)
+
+        st.markdown('<div class="advanced-note">These controls are only for generating better prompts. They do not require paid features in your app.</div>', unsafe_allow_html=True)
+
+        image_settings["include_negative"] = st.checkbox("Include negative prompt", value=True)
+        if image_settings["include_negative"]:
+            image_settings["negative_prompt"] = st.text_area(
+                "Negative Prompt",
+                value=NEGATIVE_DEFAULT,
+                height=90
+            )
+
+        st.markdown("""
+        <div class="example-box">
+            <b>What this gives you:</b><br>
+            • direct final prompt instead of prompt instructions<br>
+            • richer visual specificity<br>
+            • cleaner Midjourney-style formatting<br>
+            • stronger cinematic / anime / realistic differentiation
+        </div>
+        """, unsafe_allow_html=True)
 
 # -------------------------------
 # BUTTONS
@@ -4077,7 +4232,8 @@ with btn1:
                 topic=topic,
                 style=style,
                 audience=audience,
-                extra_details=extra_details
+                extra_details=extra_details,
+                image_settings=image_settings
             )
         else:
             st.warning("Please enter a Topic / Goal first.")
@@ -4092,13 +4248,21 @@ with btn2:
 st.markdown('<div class="section-title">Prompt’s Generation</div>', unsafe_allow_html=True)
 
 if st.session_state.generated_prompt:
+    if use_case == "Image Generation":
+        st.markdown("""
+        <div style="margin-bottom:8px;">
+            <span class="prompt-chip">Direct image prompt</span>
+            <span class="prompt-chip">Ready to paste</span>
+            <span class="prompt-chip">Pro visual detail</span>
+        </div>
+        """, unsafe_allow_html=True)
     render_copyable_prompt(st.session_state.generated_prompt)
 else:
     st.markdown("""
     <div class="feature-card">
         <div class="feature-title">No prompt generated yet</div>
         <div class="feature-text">
-            Select a use case, review the examples, enter your topic, and click <b>Generate Prompt</b> to get a richer final prompt.
+            Select a use case, enter your topic, choose style and settings, then click <b>Generate Prompt</b>.
         </div>
     </div>
     """, unsafe_allow_html=True)
@@ -4113,9 +4277,9 @@ f1, f2, f3 = st.columns(3)
 with f1:
     st.markdown("""
     <div class="feature-card">
-        <div class="feature-title">🧠 Richer Final Output</div>
+        <div class="feature-title">🧠 Final Prompt Output</div>
         <div class="feature-text">
-            Generates detailed, usable prompts instead of generic meta instructions.
+            Generates direct, usable prompts instead of meta instructions or prompt-overview text.
         </div>
     </div>
     """, unsafe_allow_html=True)
@@ -4123,9 +4287,9 @@ with f1:
 with f2:
     st.markdown("""
     <div class="feature-card">
-        <div class="feature-title">📋 One-Click Copy</div>
+        <div class="feature-title">🎨 Midjourney-Level Feel</div>
         <div class="feature-text">
-            Copy the final prompt instantly from the icon placed neatly at the end of the prompt card.
+            Image generation mode includes pro controls like framing, lighting, palette, texture, stylize, chaos, and aspect ratio.
         </div>
     </div>
     """, unsafe_allow_html=True)
@@ -4133,9 +4297,9 @@ with f2:
 with f3:
     st.markdown("""
     <div class="feature-card">
-        <div class="feature-title">⚡ Better Image Prompting</div>
+        <div class="feature-title">📋 One-Click Copy</div>
         <div class="feature-text">
-            Image generation prompts now include richer concept, visual breakdown, and optimized final prompt string.
+            Copy the final prompt instantly from the icon at the end of the prompt card.
         </div>
     </div>
     """, unsafe_allow_html=True)
